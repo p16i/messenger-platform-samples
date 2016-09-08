@@ -1,0 +1,51 @@
+<!--
+
+Copyright 2016-present, Facebook, Inc.
+All rights reserved.
+
+This source code is licensed under the license found in the
+LICENSE file in the root directory of this source tree.
+
+-->
+<html>
+  <head>
+    <title>Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="10">
+    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
+    <style>
+      div { margin: 10px 0px 10px 0px; }
+      body { padding : 20px; text-align: center }
+      table {
+        margin: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <h1> ปริมาณการสอบถามข้อมูลสายรถเมล์ </h1>
+    <table class="pure-table">
+    <thead>
+        <tr>
+            <th>สายรถเมล์</th>
+            <th>จำนวนครั้ง</th>
+        </tr>
+    </thead>
+
+    <tbody>
+      <% var data = _.chain(report).map( ( val, key) => {
+          return { busNo: key , hit: val }
+        }).sortBy("hit").reverse().value();
+      %>
+      <% for(var i=0; i < data.length; i++) {%>
+        <tr>
+            <td><%= data[i].busNo %></td>
+            <td><%= data[i].hit %></td>
+        </tr>
+      <% } %>
+      </tbody>
+    </table>
+
+    <div id="footer">© 2016 Loong Sukhum</div>
+
+  </body>
+</html>
